@@ -6,6 +6,8 @@ model trained with the standard MNIST digit dataset.  The ML model scores data r
 the micro-edge, but sends back metrics and low-confidence predictions to the CPD hub for
 later analysis.
 
+![Example Digit Predictions](preview.gif)
+
 ## Requirements
 
 This sample requires Cloud Pak for Data (CPD) and several CPD services: Streams, Watson Studio,
