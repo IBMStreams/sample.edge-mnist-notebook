@@ -4,7 +4,7 @@ This sample demonstrates the use of a Streams Python Notebook, and Edge Analytic
 Cloud Pak for Data, to recognize digit images using a simple scikit-learn ML
 model trained with the standard MNIST digit dataset.  The ML model scores data right at
 the micro-edge, but sends back metrics and low-confidence predictions to an application
-running on the CP4D hub for later analysis.
+running on the CP4D Hub for later analysis.
 
 ![Example Digit Predictions](preview.gif)
 
@@ -54,18 +54,19 @@ to improve accuracy, etc.
 ### 1. Import the Sample into CP4D as a Project
 
 In order to try out the sample, you need to first import it into CP4D as a new Project.
-1. From the Projects interface, choose [New Project](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/wsj/getting-started/projects.html).
-2. Import by choosing [Create a project from a file](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/wsj/manage-data/import-project.html)
+1. From the [Projects interface](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/wsj/getting-started/projects.html), choose "New Project".
+2. [Import](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/wsj/manage-data/import-project.html) by choosing "Create a project from a file".
    (even though we'll be importing from a GitHub repository, you need to use the "... from a file" option).
 3. Select the "From a Git Repository" tab.
 4. Enter a Name to identify your project.
 5. Choose a Token, if you already have added a GitHub token to CP4D, or [create a new one](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
    and add it to CP4D using the "New Token" link.
-6. Enter the Repository URL: [https://github.com/IBMStreams/sample.edge-mnist-notebook.git]
+6. Enter the Repository URL: <https://github.com/IBMStreams/sample.edge-mnist-notebook.git>
 7. Choose the "main" branch.
 8. No _not_ enable on-demand synchronization with this git repository.
 9. Choose the "Create" button.
-Further documentation for creating a project and integrating with Github is available [here](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/wsj/manage-data/git-integration.html).
+
+Further documentation for creating a project and integrating with GitHub is available [here](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/wsj/manage-data/git-integration.html).
 
 ### 2. Build and Deploy Micro-Edge Application
 1. Open the `build-edge-application.jupyter-py36` notebook in CP4D for editing and execution (click the pencil icon to the right
@@ -80,7 +81,25 @@ Further documentation for creating a project and integrating with Github is avai
    - After successful completion, the application container image is available in the configured CP4D Docker registry, with
      the image name `edge-camera-classifier-app:v1`.
 5. After building the image, it needs to be [packaged for deployment](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/svc-edge/usage-register-app.html),
-   either directly in CP4D or in Edge Application Manager.
+   either directly in CP4D or in Edge Application Manager.  If you wish to change any of the application parameters, this is the stage
+   you would do that (see documentation for interface details).  Possible parameters for this particular application are:
+   - `parallelism`: By default, each micro-edge application only has one instance of the ML model running, potentially limiting performance if
+     the input image stream is bringing in new images faster than the model can score them.  You can add additional parallel model instances
+     by specifying this parameter at an number higher than "1", enabling higher image scoring rates to be achieved.  Be cautious, as depending
+     on the size and load of the Edge system you will deploy the application to, you may overload the system by specifying too many parallel
+     scoring paths here.
+   - `confidence`: By default, any image where the highest prediction confidence is less than 0.70 will be sent to the metro-edge application
+     for potential manual scoring.  Setting this parameter to some other value adjusts that threshold.  The value should be between "0.00"
+     (no images will be sent to the metro-edge app) and "1.00" (all images will be sent to the metro-edge app).
+   - `repeat`: By default, the limited set of test images are sent into the application as fake camera images over and over, forever. You can
+     set a repeat count here, instead, so that after some number of times sending in the full set of test images, it stops. "0" will repeat forever,
+     "1" will send in the full set once, etc.
+   - `delay`: By default, the test images are sent in as fast as the application can handle them.  Setting a delay (in decimal seconds) here will artificially
+     slow down the test images, by pausing between images for the given amount of `delay`.  "0" sends images as fast as possible, "0.5" would pause
+     for half of a second between images, etc.
+   - `camera`: When reporting metrics back to the metro-edge application, the micro-edge application includes a camera identifier with its metrics,
+     so that problem instances can be identified, etc.  This setting controls the camera identifier prefix (which will have a system-based ID
+     added to the end by the application to ensure uniqueness).  By default, the prefix is simply "Camera".
 6. Finally, it can be [deployed to edge systems](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/svc-edge/usage-deploy.html).
 7. Optionally, after the application is running on one or more edge systems, the `testing-kafka.jupyter-py36` notebook
    can be used to directly view the messages the micro-edge application is writing to the Event Streams topic, for debug.
@@ -99,15 +118,15 @@ Further documentation for creating a project and integrating with Github is avai
 4. The last cell submits the build request and waits for the application to finish building.  Once it has finished, it
    submits the application as a job in the local CP4D Streams Instance (that is, this application runs on the CP4D Hub,
    _not_ on an Edge system).
-   - The running job can be viewed or cancelled via the CP4D "My Instances" interface, under the "Jobs" tab.
+   - The running job can be viewed or canceled via the CP4D "My Instances" interface, under the "Jobs" tab.
 
 ### 4. Observe Running System
 Once both applications are up and running, the micro-edge application will be sending occasional aggregate performance
-and prediction metrics up to the metro-edge application, along with images that it had a difficult time predicting the digit in
-(that is, low confidence in its prediction).  While the metro-edge application could perform some additional analytics or
-action on those images and metrics, across all instances of the micro-edge application, the current metro-edge application
-just aggregates them and exposes them as Streams Views so that local notebooks can perform interactive analysis of the
-current behavior.  The `render-metro-views` notebook is an example of this.
+and prediction metrics up to the metro-edge application, along with images which it had difficulty predicting
+(that is, the prediction confidence was low for all possible predictions).  While the metro-edge application could perform
+some additional analytics or action on those images and metrics, across all instances of the micro-edge application,
+the current metro-edge application just aggregates them and exposes them as Streams Views so that local notebooks can
+perform interactive analysis of the current behavior.  The `render-metro-views` notebook is an example of this.
 1. Open the `render-metro-views.jupyter-py36` notebook in CP4D for editing and execution.
 2. Be sure the Streams Instance name (`STREAMS_INSTANCE_NAME`) is set appropriately to match your environment, as above.
 3. Execute the cells in the notebook.
