@@ -63,7 +63,7 @@ In order to try out the sample, you need to first import it into CP4D as a new P
    and add it to CP4D using the "New Token" link.
 6. Enter the Repository URL: <https://github.com/IBMStreams/sample.edge-mnist-notebook.git>
 7. Choose the "main" branch.
-8. No _not_ enable on-demand synchronization with this git repository.
+8. Do _not_ enable on-demand synchronization with this git repository.
 9. Choose the "Create" button.
 
 Further documentation for creating a project and integrating with GitHub is available [here](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/wsj/manage-data/git-integration.html).
@@ -123,7 +123,7 @@ Further documentation for creating a project and integrating with GitHub is avai
 ### 4. Observe Running System
 Once both applications are up and running, the micro-edge application will be sending occasional aggregate performance
 and prediction metrics up to the metro-edge application, along with images which it had difficulty predicting
-(that is, the prediction confidence was low for all possible predictions).  While the metro-edge application could perform
+(that is, the prediction confidence was low for all possible options).  While the metro-edge application could perform
 some additional analytics or action on those images and metrics, across all instances of the micro-edge application,
 the current metro-edge application just aggregates them and exposes them as Streams Views so that local notebooks can
 perform interactive analysis of the current behavior.  The `render-metro-views` notebook is an example of this.
