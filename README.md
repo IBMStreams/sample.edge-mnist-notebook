@@ -32,7 +32,7 @@ The sample consists of three primary notebooks:
 - `build-edge-application` creates the micro-edge application.
 - `build-metro-application` creates the metro-edge application and submits it to run on the CP4D Hub.
 - `render-metro-views` displays live information from the metro-edge application, which is receiving
-   and aggregating it from the micro-edge applications.
+   and aggregating messages from the micro-edge applications.
 
 When running on the Edge systems, the **micro-edge application** iterates through a set of test images,
 preparing and scoring them against a digit prediction model.  It sends aggregated metrics and
