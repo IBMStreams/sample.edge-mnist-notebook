@@ -12,9 +12,9 @@ running on the CP4D Hub for later analysis.
 
 This sample requires Cloud Pak for Data (CP4D) and several CP4D services: Streams, Watson Studio,
 and Edge Analytics.  A Streams Instance should be provisioned, and Edge systems should be
-available. It also requires read/write access to an IBM Event Streams topic, accessible
+available. It also requires read/write access to an IBM Event Streams or Kafka topic, accessible
 to the CP4D Streams Instance, as well as the Edge systems.  Depending on where the IBM Event
-Streams instance is provisioned, the topic may need to be created on the IBM Cloud.
+Streams or Kafka instance is provisioned, the topic may need to be created on the IBM Cloud.
 
 Please see the appropriate documentation links for installing and provisioning each item.
 
@@ -25,6 +25,7 @@ Please see the appropriate documentation links for installing and provisioning e
 5. [Streams Instance](https://www.ibm.com/support/producthub/icpdata/docs/content/SSQNUZ_current/cpd/svc/streams/provision.html#provision)
 6. [Edge systems](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/svc-edge/admin.html)
 7. [IBM Event Streams instance on IBM Cloud](https://ibmstreams.github.io/streamsx.documentation/docs/edgeanalytics/kafka-options#event-streams-in-ibm-cloud)
+   or [other Kafka Options](https://ibmstreams.github.io/streamsx.documentation/docs/edgeanalytics/kafka-options)
 
 ## Architectural Overview
 
@@ -71,12 +72,12 @@ Further documentation for creating a project and integrating with GitHub is avai
 ### 2. Build and Deploy Micro-Edge Application
 1. Open the `build-edge-application.jupyter-py36` notebook in CP4D for editing and execution (click the pencil icon to the right
    of the notebook you want to edit).
-2. In the first code cell, be sure the Streams Instance name (`STREAMS_INSTANCE_NAME`) and the Event Streams topic
+2. In the first code cell, be sure the Streams Instance name (`STREAMS_INSTANCE_NAME`) and the Event Streams/Kafka topic
    (`EVENTSTREAMS_TOPIC`) are set appropriately to match your environment (Requirements 6 and 7, respectively, above).
    Edit the cell if necessary.
 3. Execute each cell in the notebook.
-   - Be sure to enter your Event Streams credentials string in the fourth code cell when it prompts.  This should have
-     been acquired while setting up the Event Streams instance, above in Requirement 7.
+   - Be sure to enter your Event Streams/Kafka credentials string in the fourth code cell when it prompts.  This should have
+     been acquired while setting up the Event Streams or Kafka instance, above in Requirement 7.
 4. The last cell submits the build request and waits for the application image to finish building, which might take a while.
    - After successful completion, the application container image is available in the configured CP4D Docker registry, with
      the image name `edge-camera-classifier-app:v1`.
@@ -102,19 +103,19 @@ Further documentation for creating a project and integrating with GitHub is avai
      added to the end by the application to ensure uniqueness).  By default, the prefix is simply "Camera".
 6. Finally, it can be [deployed to edge systems](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/svc-edge/usage-deploy.html).
 7. Optionally, after the application is running on one or more edge systems, the `testing-kafka.jupyter-py36` notebook
-   can be used to directly view the messages the micro-edge application is writing to the Event Streams topic, for debug.
+   can be used to directly view the messages the micro-edge application is writing to the Event Streams/Kafka topic, for debug.
    - Before running the cells in that notebook, be sure to edit the first code cell, and set `EVENTSTREAMS_TOPIC` appropriately,
      as well as setting `SHOW_IMAGES` to True if you wish to see the actual images sent over due to low-confidence predictions, along
      with the possible predictions and scores. If `SHOW_IMAGES` is left at the default False, only the aggregated digit
      prediction and scoring performance metrics will be shown.
-   - You'll also need to enter the Event Streams credentials string when prompted, as above.
+   - You'll also need to enter the Event Streams/Kafka credentials string when prompted, as above.
 
 ### 3. Build and Submit Metro-Edge Application
 1. Open the `build-metro-application.jupyter-py36` notebook in CP4D for editing and execution.
-2. In the first code cell, be sure the Streams Instance name (`STREAMS_INSTANCE_NAME`) and Event Streams topic
+2. In the first code cell, be sure the Streams Instance name (`STREAMS_INSTANCE_NAME`) and Event Streams/Kafka topic
    (`EVENTSTREAMS_TOPIC`) are set appropriately to match your environment, as above.  Edit the cell if necessary.
 3. Execute each cell in the notebook.
-   - Be sure to enter your Event Streams credentials string when it prompts, as above.
+   - Be sure to enter your Event Streams/Kafka credentials string when it prompts, as above.
 4. The last cell submits the build request and waits for the application to finish building.  Once it has finished, it
    submits the application as a job in the local CP4D Streams Instance (that is, this application runs on the CP4D Hub,
    _not_ on an Edge system).
