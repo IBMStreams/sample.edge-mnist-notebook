@@ -19,12 +19,12 @@ Streams or Kafka instance is provisioned, the topic may need to be created on th
 Please see the appropriate documentation links for installing and provisioning each item.  Be sure
 to use the instructions for the version you're using.
 
-1. IBM Cloud Pak for Data [CP4D v3.0](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/cpd/install/install.html) [CP4D v3.5](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/cpd/install/install.html)
-2. Edge Analytics beta service on CP4D [CP4D v3.0](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/svc-edge/install.html) [CP4D v3.5](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/svc-edge/install.html)
-3. IBM Streams service on CP4D [CP4D v3.0](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/cpd/svc/streams/install-intro.html) [CP4D v3.5](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/svc-streams/streams-svc-install.html)
-4. Watson Studio service on CP4D [CP4D v3.0](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/wsj/install/install-ws.html) [CP4D v3.5](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/wsj/install/install-ws.html)
-5. Streams Instance [CP4D v3.0](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/cpd/svc/streams/provision.html#provision) [CP4D v3.5](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/svc-streams/provision.html)
-6. Edge systems [CP4D v3.0](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/svc-edge/admin.html) [CP4D v3.5](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/svc-edge/admin.html)
+1. IBM Cloud Pak for Data ([CP4D v3.0](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/cpd/install/install.html), [CP4D v3.5](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/cpd/install/install.html))
+2. Edge Analytics beta service on CP4D ([CP4D v3.0](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/svc-edge/install.html), [CP4D v3.5](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/svc-edge/install.html))
+3. IBM Streams service on CP4D ([CP4D v3.0](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/cpd/svc/streams/install-intro.html), [CP4D v3.5](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/svc-streams/streams-svc-install.html))
+4. Watson Studio service on CP4D ([CP4D v3.0](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/wsj/install/install-ws.html), [CP4D v3.5](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/wsj/install/install-ws.html))
+5. Streams Instance ([CP4D v3.0](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/cpd/svc/streams/provision.html#provision), [CP4D v3.5](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/svc-streams/provision.html))
+6. Edge systems ([CP4D v3.0](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/svc-edge/admin.html), [CP4D v3.5](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/svc-edge/admin.html))
 7. [IBM Event Streams instance on IBM Cloud](https://ibmstreams.github.io/streamsx.documentation/docs/edgeanalytics/kafka-options#event-streams-in-ibm-cloud)
    or [other Kafka Options](https://ibmstreams.github.io/streamsx.documentation/docs/edgeanalytics/kafka-options)
 
@@ -56,8 +56,8 @@ to improve accuracy, etc.
 ### 1. Import the Sample into CP4D as a Project
 
 In order to try out the sample, you need to first import it into CP4D as a new Project.
-1. From the Projects interface [CPD4D v3.0](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/wsj/getting-started/projects.html) [CPD4D v3.5](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/wsj/getting-started/projects.html), choose "New Project".
-2. Import [CP4D v3.0](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/wsj/manage-data/import-project.html) [CP4D v3.5](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/wsj/manage-data/import-project.html) by choosing "Create a project from a file".
+1. From the Projects interface ([CPD4D v3.0](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/wsj/getting-started/projects.html), [CPD4D v3.5](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/wsj/getting-started/projects.html)), choose "New Project".
+2. Import ([CP4D v3.0](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/wsj/manage-data/import-project.html), [CP4D v3.5](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/wsj/manage-data/import-project.html)) by choosing "Create a project from a file".
    (even though we'll be importing from a GitHub repository, you need to use the "... from a file" option).
 3. Select the "From a Git Repository" tab.
 4. Enter a Name to identify your project.
@@ -68,7 +68,7 @@ In order to try out the sample, you need to first import it into CP4D as a new P
 8. Do _not_ enable on-demand synchronization with this git repository.
 9. Choose the "Create" button.
 
-Further documentation for creating a project and integrating with GitHub is available here: [CP4D v3.0](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/wsj/manage-data/git-integration.html) [CP4D v3.5](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/wsj/manage-data/git-integration.html).
+Further documentation for creating a project and integrating with GitHub is available here: ([CP4D v3.0](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/wsj/manage-data/git-integration.html), [CP4D v3.5](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/wsj/manage-data/git-integration.html)).
 
 ### 2. Build and Deploy Micro-Edge Application
 1. Open the `build-edge-application.jupyter-py36` notebook in CP4D for editing and execution (click the pencil icon to the right
@@ -82,7 +82,7 @@ Further documentation for creating a project and integrating with GitHub is avai
 4. The last cell submits the build request and waits for the application image to finish building, which might take a while.
    - After successful completion, the application container image is available in the configured CP4D Docker registry, with
      the image name `edge-camera-classifier-app:v1`.
-5. After building the image, it needs to be packaged for deployment [CP4D v3.0](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/svc-edge/usage-register-app.html) [CP4D v3.5](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/svc-edge/usage-register-app.html),
+5. After building the image, it needs to be packaged for deployment ([CP4D v3.0](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/svc-edge/usage-register-app.html), [CP4D v3.5](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/svc-edge/usage-register-app.html)),
    either directly in CP4D or in Edge Application Manager.  If you wish to change any of the application parameters, this is the stage
    you would do that (see documentation for interface details).  Possible parameters for this particular application are:
    - `parallelism`: By default, each micro-edge application only has one instance of the ML model running, potentially limiting performance if
@@ -102,7 +102,7 @@ Further documentation for creating a project and integrating with GitHub is avai
    - `camera`: When reporting metrics back to the metro-edge application, the micro-edge application includes a camera identifier with its metrics,
      so that problem instances can be identified, etc.  This setting controls the camera identifier prefix (which will have a system-based ID
      added to the end by the application to ensure uniqueness).  By default, the prefix is simply "Camera".
-6. Finally, it can be deployed to edge systems [CP4D v3.0](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/svc-edge/usage-deploy.html) [CP4D v3.5](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/svc-edge/usage-deploy.html).
+6. Finally, it can be deployed to edge systems ([CP4D v3.0](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/svc-edge/usage-deploy.html), [CP4D v3.5](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/svc-edge/usage-deploy.html)).
 7. Optionally, after the application is running on one or more edge systems, the `testing-kafka.jupyter-py36` notebook
    can be used to directly view the messages the micro-edge application is writing to the Event Streams/Kafka topic, for debug.
    - Before running the cells in that notebook, be sure to edit the first code cell, and set `EVENTSTREAMS_TOPIC` appropriately,
